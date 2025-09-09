@@ -1,8 +1,6 @@
-const ss = SpreadsheetApp.openById(
-  "1pbKWbsD8wlxcAX-iXnP3Pez25Kaw7Wp9ZccwwkE52SU"
-);
+const ss = SpreadsheetApp.openById("spreadsheetID");
 const sheet = ss.getSheetByName("Data");
-const FOLDER_NAME = "1Svdp0DXFOns_S3D5yyUe-4k5I4hC1h9_";
+const FOLDER_NAME = "FolderID";
 
 // Akses halaman utama
 function doGet() {
