@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Tambah Program Kegiatan Tahunan</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
+    <!-- icon fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- css -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f3e9dc;
+            --button: #895737;
+            --hover: #c08552;
+            --text: #111;
+        }
+
+        body {
+            font-family: "Lato";
+            background-color: var(--bg);
+            margin: 20px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .container {
+            padding: 10px;
+            width: 100%;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            margin-bottom: 20px;
+        }
+
+        .nav .teksForm {
+            font-size: 36px;
+            color: var(--text);
+            font-weight: 900;
+        }
+
+        /* .nav .logout {
+            width: 10%;
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 5px;
+            background-color: var(--button);
+            color: var(--bg);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav .logout:hover {
+            background-color: var(--hover);
+            color: #111;
+        } */
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 16px;
+            margin: 20px 0 5px 0;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            grid-column: span 3;
+            text-align: center;
+            margin: 10px 0 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: var(--button);
+            color: var(--bg);
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: var(--hover);
+            color: #111;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            align-items: center;
+            display: flex;
+        }
+
+        .nav #btn {
+            padding: 0 10px;
+            border: none;
+            background: var(--button);
+            color: var(--bg);
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .nav #btn:hover {
+            background-color: var(--hover);
+            color: #111;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        th {
+            white-space: nowrap;
+            /* Mencegah teks header turun ke baris baru */
+            text-align: center;
+            /* Tengahkan teks */
+            padding: 8px 12px;
+            /* Atur padding agar lebih proporsional */
+        }
+
+        table {
+            width: 100%;
+            table-layout: auto;
+            /* Agar kolom menyesuaikan konten */
+        }
+
+        th,
+        td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* Jika teks panjang, tampilkan ... */
+        }
+
+        /* media query */
+        @media only screen and (max-width: 480px) {
+            form {
+                display: grid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- navbar -->
+        <div class="nav">
+            <span class="teksForm">Surat Masuk</span>
+            <a href="https://script.google.com/macros/s/AKfycbw-ZuEFyehTTDrbPLqvYpZAfJUvnLElGF1ZRmquvHLfm270GnSqvH085JpUL4G043-zCA/exec?page=userdashboard"
+                id="btn">KEMBALI</a>
+        </div>
+
+        <!-- form -->
+        <form id="suratMasuk">
+            <div class="form-group">
+                <input type="hidden" id="id">
+
+                <!-- penerima -->
+                <label for="penerima">Penerima</label>
+                <input type="text" name="penerima" id="penerima" placeholder="Masukkan Penerima" required>
+
+                <!-- nomor urut -->
+                <label for="noUrut">Nomor Urut</label>
+                <input type="text" name="noUrut" id="noUrut" placeholder="Nomor Urut Surat">
+
+                <!-- asal surat -->
+                <label for="asalSurat">Asal Surat</label>
+                <input type="text" name="asalSurat" id="asalSurat" placeholder="Asal Surat">
+            </div>
+
+            <div class="form-group">
+                <!-- nomor surat -->
+                <label for="nomorSurat">Nomor Surat</label>
+                <input type="text" name="nomorSurat" id="nomorSurat" placeholder="Nomor Surat">
+
+                <!-- tanggal surat -->
+                <label for="tglSurat">Tanggal Surat</label>
+                <input type="date" name="tglSurat" id="tglSurat" placeholder="dd-MM-yyyy">
+
+                <!-- tanggal terima surat -->
+                <label for="tglTerimaSurat">Tanggal Terima Surat</label>
+                <input type="date" name="tglTerimaSurat" id="tglTerimaSurat" placeholder="dd-MM-yyyy">
+            </div>
+
+            <div class="form-group">
+                <!-- perihal -->
+                <label for="perihal">Perihal</label>
+                <input type="text" name="perihal" id="perihal" placeholder="Perihal">
+
+                <!-- disposisi -->
+                <label for="disposisi">Disposisi</label>
+                <input type="text" name="disposisi" id="disposisi" placeholder="Disposisi">
+
+                <!-- files -->
+                <label for="files">Arsip</label>
+                <input type="file" name="files" id="files" placeholder="Masukkan Alat Bukti">
+            </div>
+
+            <div class="submit-btn">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+        <!-- table -->
+        <div class="container">
+            <div class="table-responsive">
+                <table id="myTable" class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Aksi</th>
+                            <th>Penerima</th>
+                            <th>Nomor Urut</th>
+                            <th>Asal Surat</th>
+                            <th>Nomor Surat</th>
+                            <th>Tanggal Surat</th>
+                            <th>Tanggal Terima Surat</th>
+                            <th>Perihal</th>
+                            <th>Disposisi</th>
+                            <th>Arsip</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        let dataTable
+
+        // Fungsi menampilkan data ke DataTables
+        function loadData() {
+            google.script.run.withSuccessHandler(function (data) {
+                console.log("Data diterima:", data);
+                if (dataTable) {
+                    dataTable.clear().draw();
+                    dataTable.rows.add(data).draw();
+                } else {
+                    dataTable = $('#myTable').DataTable({
+                        data: data,
+                        columns: [
+                            {
+                                data: null,
+                                render: function (data, type, row) {
+                                    return `
+                                        <button class="btn btn-sm btn-warning edit-btn" data-id="${row.id}"><i class="fa fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}"><i class="fa fa-trash"></i></button>
+                                    `;
+                                }
+                            },
+                            { data: 'penerima' },
+                            { data: 'noUrut' },
+                            { data: 'asalSurat' },
+                            { data: 'nomorSurat' },
+                            { data: 'tglSurat' },
+                            { data: 'tglTerimaSurat' },
+                            { data: 'perihal' },
+                            { data: 'disposisi' },
+
+                            {
+                                data: 'fileUrls',
+                                render: function (data) {
+                                    if (!data) return '';
+                                    return data.split(',').map(url => `<a href="${url}" target="_blank">Lihat</a>`).join(', ');
+                                }
+                            }
+                        ]
+                    });
+                }
+            }).getData();
+        }
+
+        // Fungsi reset form
+        function resetForm() {
+            $('#suratMasuk')[0].reset();
+            $('#id').val('');
+        }
+
+        // Saat submit form
+        $('#suratMasuk').on('submit', function (e) {
+            e.preventDefault();
+            const id = $('#id').val();
+            const formData = {
+                id: id,
+                penerima: $('#penerima').val(),
+                noUrut: $('#noUrut').val(),
+                asalSurat: $('#asalSurat').val(),
+                nomorSurat: $('#nomorSurat').val(),
+                tglSurat: $('#tglSurat').val(),
+                tglTerimaSurat: $('#tglTerimaSurat').val(),
+                perihal: $('#perihal').val(),
+                disposisi: $('#disposisi').val(),
+
+            };
+
+            const files = $('#files')[0].files;
+
+            if (files.length > 0) {
+                const base64Files = Array.from(files).map(file => {
+                    return new Promise(resolve => {
+                        const fr = new FileReader();
+                        fr.onload = () => {
+                            const base64 = fr.result?.split(',')[1]; // gunakan optional chaining
+                            if (!base64) {
+                                console.error("Base64 file tidak valid", fr.result);
+                                return;
+                            }
+
+                            resolve({
+                                name: file.name,
+                                type: file.type,
+                                data: base64
+                            });
+                        };
+                        fr.readAsDataURL(file);
+                    });
+                });
+
+                Promise.all(base64Files).then(results => {
+                    google.script.run.withSuccessHandler(() => {
+                        alert('Data berhasil disimpan');
+                        resetForm();
+                        loadData();
+                    })[id ? 'updateData' : 'addData'](formData, results);
+                });
+            } else {
+                google.script.run.withSuccessHandler(() => {
+                    alert('Data berhasil disimpan');
+                    resetForm();
+                    loadData();
+                })[id ? 'updateData' : 'addData'](formData, []);
+            }
+        });
+
+        // Tombol edit
+        $('#myTable').on('click', '.edit-btn', function () {
+            const row = dataTable.row($(this).parents('tr')).data();
+            for (const key in row) {
+                if (key !== 'fileUrls') {
+                    let value = row[key];
+
+                    // Jika field adalah tanggal, ubah format ke YYYY-MM-DD
+                    if (key === 'tglSurat' || key === 'tglTerimaSurat') {
+                        const dateObj = new Date(value);
+                        const yyyy = dateObj.getFullYear();
+                        const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+                        const dd = String(dateObj.getDate()).padStart(2, '0');
+                        value = `${yyyy}-${mm}-${dd}`;
+                    }
+
+                    $(`#${key}`).val(value);
+                }
+            }
+            $('#id').val(row.id); // pastikan id diisi agar update
+        });
+
+        // Tombol hapus
+        $('#myTable').on('click', '.delete-btn', function () {
+            const id = $(this).data('id');
+            if (confirm('Yakin ingin menghapus data ini?')) {
+                google.script.run.withSuccessHandler(() => {
+                    alert('Data berhasil dihapus');
+                    loadData();
+                }).deleteData(id);
+            }
+        });
+
+        // Load data awal
+        $(document).ready(function () {
+            loadData();
+        });
+
+    </script>
+</body>
+
+</html>
