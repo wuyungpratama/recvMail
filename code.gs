@@ -1,6 +1,6 @@
-const ss = SpreadsheetApp.openById("spreadsheetID");
+const ss = SpreadsheetApp.openById("spreadsheetID"); //ganti dengan spreadsheetID kamu
 const sheet = ss.getSheetByName("Data");
-const FOLDER_NAME = "FolderID";
+const FOLDER_NAME = "FolderID"; //ganti dengan folderID kamu di Google Drive
 
 // Akses halaman utama
 function doGet() {
